@@ -12,9 +12,9 @@ const contactFormSchema = z.object({
   message: z.string().min(5, "Wiadomość powinna mieć minimum 5 znaków"),
 });
 
-type ContactFormData = z.infer<typeof contactFormSchema>;
+type ContactFormData = z.infer<typeof contactFormSchema>; // Typ danych formularza na podstawie schematu
 
-const sendContactForm = async (data: ContactFormData) => {
+const sendContactForm = async (data: ContactFormData) => { // Funkcja wysyłająca dane formularza
   const res = await fetch("/api/contact", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -25,7 +25,7 @@ const sendContactForm = async (data: ContactFormData) => {
   return res.json();
 };
 
-export default function ContactForm() {
+export default function ContactForm() { // Główna funkcja komponentu formularza
   const {
     register,
     handleSubmit,
@@ -38,7 +38,7 @@ export default function ContactForm() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const mutation = useMutation({
+  const mutation = useMutation({ // Użycie react-query do obsługi mutacji
     mutationFn: sendContactForm,
     onSuccess: () => {
       setSuccessMessage("Formularz wysłany pomyślnie!");
