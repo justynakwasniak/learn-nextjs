@@ -7,7 +7,7 @@ interface BlogPostPageProps {
 }
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const { id } = use(params);
+  const { id } = use(params); // Rozpakowuje obietnicę params
 
   return (
     <div className="p-6">
